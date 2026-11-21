@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Cloud 9 Pastries for inquiries, custom orders, or to visit our location in New Perungalathur, Chennai.">
+    <title>Cloud 9 Pastries | Get In Touch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rose-gold: #e4b4b4;
+            --ivory-cream: #f7f3e9;
+            --champagne-beige: #f2e6d9;
+            --chocolate-brown: #5c3e2d;
+            --velvet-black: #1a1a1a;
+            --text-light: #fefefe;
+            --section-padding: 100px 0;
+            --max-width: 1200px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--velvet-black);
+            background-color: var(--ivory-cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        section {
+            padding: var(--section-padding);
+        }
+        
+        /* Navigation (Standard Copy) */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo img { height: 100px; width: 100px; border-radius: 50%; object-fit: cover; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--chocolate-brown); font-weight: bold; position: relative; }
+        .nav-links a:after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--rose-gold); transition: width 0.3s ease; }
+        .nav-links a:hover:after { width: 100%; }
+        .cart-icon { position: relative; font-size: 24px; color: var(--chocolate-brown); cursor: pointer; }
+        .cart-count { position: absolute; top: -10px; right: -10px; background: var(--rose-gold); color: white; font-size: 12px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 600; }
+        .hamburger { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--chocolate-brown); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links { position: fixed; top: 101px; left: 0; width: 100%; background: var(--ivory-cream); flex-direction: column; align-items: center; display: none; padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+        }
+        
+        /* --- CONTACT PAGE STYLES --- */
+
+        /* 1. Hero Title - FIX: Reduced top padding to make content visible */
+        #contact-hero {
+            padding-top: 130px; 
+            padding-bottom: 50px;
+            text-align: center;
+        }
+
+        #contact-hero h1 {
+            font-size: 72px;
+            color: var(--chocolate-brown);
+            margin-bottom: 10px;
+        }
+        
+        #contact-hero p {
+            font-size: 20px;
+            color: #777;
+        }
+
+        /* 2. Main Contact Grid (Form + Details) */
+        #contact-details {
+            padding-top: 50px;
+            padding-bottom: 100px;
+            background: var(--champagne-beige);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+        }
+
+        /* Contact Form Styling */
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h3 {
+            font-size: 36px;
+            color: var(--rose-gold);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--rose-gold);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--chocolate-brown);
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--rose-gold);
+            box-shadow: 0 0 5px rgba(228, 180, 180, 0.5);
+            outline: none;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--chocolate-brown);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: var(--rose-gold);
+        }
+
+        /* Physical Details Styling */
+        .contact-info h3 {
+            font-size: 36px;
+            color: var(--chocolate-brown);
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        
+        .info-card i {
+            font-size: 30px;
+            color: var(--rose-gold);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .info-card h4 {
+            font-size: 22px;
+            color: var(--chocolate-brown);
+            margin-bottom: 5px;
+        }
+
+        .info-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* 3. Map Section - Google Map iframe container */
+        #location {
+            padding: 0;
+            z-index: 1; 
+        }
+
+        #google-map-embed {
+            width: 100%;
+            height: 500px; /* CRITICAL for map rendering */
+            border: 0; /* Remove default iframe border */
+            filter: grayscale(0.5); /* Optional: Adds a slight stylish effect */
+            transition: filter 0.3s ease;
+        }
+        #google-map-embed:hover {
+            filter: grayscale(0);
+        }
+
+        /* 4. Footer */
+        footer {
+            background: var(--chocolate-brown);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            #contact-hero h1 {
+                font-size: 56px;
+            }
+            #contact-details {
+                padding-top: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+             #contact-hero h1 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
+          <img src="LOGO1.jpg" alt="Cloud 9 Pastries Logo">
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html">Our Pastries</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </div>
+
+        <button class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <section id="contact-hero">
+        <div class="container">
+            <p class="script-font" style="font-size: 40px; color: var(--rose-gold);">We'd Love to Hear From You</p>
+            <h1>GET IN TOUCH</h1>
+            <p>For custom orders, press inquiries, or just to say hello, contact us below.</p>
+        </div>
+    </section>
+
+    <section id="contact-details">
+        <div class="container contact-grid">
+            
+            <div class="contact-form">
+                <h3 class="script-font">Send Us an Inquiry</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject / Order Type</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Our Location Details</h3>
+                
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Visit Our Location</h4>
+                    <p>Cloud 9 Pastries</p>
+                    <p>11, Bharathi Ave Main Rd, 4th STREET,</p>
+                    <p>New Perungalathur, Chennai, Tamil Nadu 600063</p>
+                </div>
+                
+     
+                
+                <div class="info-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>Call Us Directly</h4>
+                    <p>Custom Orders: +91 6382 827 843</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="location">
+        <iframe 
+            id="google-map-embed"
+            src="https://maps.google.com/maps?q=Bharathi%20Avenue%2C%20New%20Perungalathur%2C%20Chennai&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="margin: 0;">© 2025 Cloud 9 Pastries. Experience the zenith of indulgence.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+        
+        if (hamburger) {
+            hamburger.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+                hamburger.innerHTML = navLinks.classList.contains("active")
+                    ? '<i class="fas fa-times"></i>'
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+        
+        // Cart count display (Reads from LocalStorage)
+        const cartCountElement = document.querySelector('.cart-count');
+        
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+        }
+        
+        // Initialize Cart on Load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+
+// Contact Form Submission        
+document.getElementById("contact-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Basic validation
+    if (!name || !email || !message) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    try {
+        const res = await fetch("https://cloud9pastries-backend.onrender.com/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, subject, message })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            alert("Message sent successfully!");
+            document.getElementById("contact-form").reset();
+        } else {
+            alert("Failed to send message: " + data.message);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Could not connect to server.");
+    }
+});
+
+    </script>
+</body>
+</html>

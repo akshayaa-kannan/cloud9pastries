@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The elevated story and philosophy of Cloud 9 Pastries.">
+    <title>Cloud 9 Pastries | Luxury Patisserie Elevated</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rose-gold: #e4b4b4;
+            --ivory-cream: #f7f3e9;
+            --champagne-beige: #f2e6d9;
+            --chocolate-brown: #5c3e2d;
+            --velvet-black: #1a1a1a;
+            --text-light: #fefefe;
+            --section-padding: 120px 0;
+            --max-width: 1400px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--velvet-black);
+            background-color: var(--ivory-cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+        
+        /* Navigation Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .logo img { height: 100px; width: 100px; border-radius: 50%; object-fit: cover; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--chocolate-brown); font-weight: bold; position: relative; }
+        .nav-links a:after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--rose-gold); transition: width 0.3s ease; }
+        .nav-links a:hover:after { width: 100%; }
+        .cart-icon { position: relative; font-size: 24px; color: var(--chocolate-brown); cursor: pointer; }
+        .cart-count { position: absolute; top: -10px; right: -10px; background: var(--rose-gold); color: white; font-size: 12px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 600; }
+        .hamburger { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--chocolate-brown); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links { position: fixed; top: 101px; left: 0; width: 100%; background: var(--ivory-cream); flex-direction: column; align-items: center; display: none; padding: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+        }
+
+        /* --- ADVANCED LAYOUT STYLES --- */
+        
+        /* 1. Full-Height Hero */
+        #hero-luxury {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            background-image: url('bg1.png'); /* Placeholder for dramatic image */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        #hero-luxury:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); 
+            z-index: 1;
+        }
+        
+        #hero-luxury .container {
+            z-index: 2;
+        }
+        
+        #hero-luxury h1 {
+            font-size: 96px;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+        
+        #hero-luxury .tagline {
+            font-size: 28px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            color: var(--rose-gold);
+            font-weight: 300;
+        }
+
+        /* 2. Story Grid with Sticky Navigation */
+        #narrative {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        
+        .narrative-grid {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 80px;
+        }
+
+        /* Sticky Side Nav */
+        .sticky-nav {
+            position: sticky;
+            top: 150px; /* Below the main header */
+            height: fit-content;
+            padding: 30px;
+            background: var(--champagne-beige);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .sticky-nav h4 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--chocolate-brown);
+        }
+
+        .sticky-nav a {
+            display: block;
+            text-decoration: none;
+            color: #999;
+            padding: 8px 0;
+            border-left: 2px solid #ddd;
+            padding-left: 15px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .sticky-nav a:hover, .sticky-nav a.active {
+            color: var(--rose-gold);
+            border-color: var(--rose-gold);
+            font-weight: 700;
+        }
+
+        /* Main Story Content */
+        .story-content-wrapper {
+            /* Standard flow content area */
+        }
+        
+        .story-segment {
+            padding: 80px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .story-segment:last-child {
+            border-bottom: none;
+        }
+
+        .story-segment h3 {
+            font-size: 48px;
+            color: var(--chocolate-brown);
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--rose-gold);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .story-segment p {
+            margin-bottom: 20px;
+        }
+
+        /* 3. Image Gallery - Complex Grid */
+        .gallery-title {
+            text-align: center;
+            font-size: 56px;
+            color: var(--rose-gold);
+            margin-bottom: 50px;
+            padding-top: 60px;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 15px;
+            padding-bottom: 50px;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Defining Grid Areas for Asymmetrical Layout */
+        .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; } /* Wide Top Left */
+        .gallery-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 3; } /* Tall Mid */
+        .gallery-item:nth-child(3) { grid-column: 4 / 5; grid-row: 1 / 2; } /* Small Top Right */
+        .gallery-item:nth-child(4) { grid-column: 1 / 2; grid-row: 2 / 3; } /* Small Bottom Left */
+        .gallery-item:nth-child(5) { grid-column: 2 / 3; grid-row: 2 / 3; } /* Small Bottom Mid */
+        .gallery-item:nth-child(6) { grid-column: 4 / 5; grid-row: 2 / 3; } /* Small Bottom Right */
+
+
+        /* 4. Commitment Section - High Contrast */
+        #commitment {
+            background-color: var(--velvet-black);
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        #commitment .container {
+            max-width: 1000px;
+        }
+
+        #commitment h2 {
+            font-size: 56px;
+            color: var(--rose-gold);
+            margin-bottom: 40px;
+        }
+
+        .commitment-points {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .commitment-point {
+            flex: 1;
+        }
+        
+        .commitment-point i {
+            font-size: 45px;
+            color: var(--champagne-beige);
+            margin-bottom: 20px;
+        }
+        
+        .commitment-point h4 {
+            font-size: 26px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* 5. Footer (Minimal) */
+        footer {
+            background: var(--chocolate-brown);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            #hero-luxury h1 {
+                font-size: 72px;
+            }
+            .narrative-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .sticky-nav {
+                position: static;
+                height: auto;
+                margin-bottom: 40px;
+            }
+            .story-segment h3 {
+                font-size: 36px;
+            }
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 200px);
+            }
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 2; }
+            .gallery-item:nth-child(2) { grid-column: 1 / 2; grid-row: 2 / 3; }
+            .gallery-item:nth-child(3) { grid-column: 2 / 3; grid-row: 2 / 3; }
+            .gallery-item:nth-child(4) { grid-column: 1 / 2; grid-row: 3 / 4; }
+            .gallery-item:nth-child(5) { grid-column: 2 / 3; grid-row: 3 / 4; }
+            .gallery-item:nth-child(6) { display: none; } /* Hide one item on mobile */
+            .commitment-points {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            #hero-luxury h1 {
+                font-size: 50px;
+            }
+            #hero-luxury .tagline {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="container nav-container">
+        <a href="index.html" class="logo">
+          <img src="LOGO1.jpg" alt="Cloud 9 Pastries Logo">
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html">Our Pastries</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </div>
+
+        <button class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <section id="hero-luxury">
+        <div class="container">
+            <p class="script-font" style="font-size: 40px; margin-bottom: 0;">Beyond Patisserie</p>
+            <h1>THE ART OF LUXURY</h1>
+            <p class="tagline">We are artisans committed to the extraordinary, transforming the finest ingredients into exquisite, ephemeral masterpieces.</p>
+            <a href="#story-anchor" style="color: white; text-decoration: none; border-bottom: 2px solid var(--rose-gold); padding-bottom: 5px; font-weight: 500; letter-spacing: 1px;">Discover Our Journey <i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <section id="narrative">
+        <div class="container narrative-grid">
+
+            <div class="sticky-nav">
+                <h4>Our Journey</h4>
+                <a href="#chapter1" class="nav-link active">01. The Founding Principle</a>
+                <a href="#chapter2" class="nav-link">02. The Artisanal Process</a>
+                <a href="#chapter3" class="nav-link">03. Gallery of Masterpieces</a>
+                <a href="#chapter4" class="nav-link">04. Our Ethical Commitment</a>
+            </div>
+
+            <div class="story-content-wrapper">
+                
+                <div id="chapter1" class="story-segment">
+                    <h3>The Founding Principle</h3>
+                    <p>Cloud 9 Pastries was established on a single, uncompromising belief: that indulgence should be an act of artistry. Our founder, a dedicated patron of global patisserie, recognized a gap between mass-market sweets and true luxury craft.</p>
+                    <p>We set out to bridge that divide, meticulously engineering every recipe to deliver not just flavor, but a genuine, emotional experience—a momentary escape to "Cloud 9." This principle guides every decision, from the butter we select to the final dusting of edible gold.</p>
+                </div>
+
+                <div id="chapter2" class="story-segment">
+                    <h3>The Artisanal Process</h3>
+                    <p>Our kitchen operates outside the parameters of commercial efficiency. It is a workshop where time and patience are our most valued assets. The process begins months in advance, sourcing rare spices, premium single-origin chocolates, and hand-picked fruits.</p>
+                    <p>We employ heritage techniques, often dedicating three days to a single cake or twenty-four hours to the perfect croissant lamination. This slow, deliberate process is why our texture is unrivalled, and our flavors resonate with depth and clarity that machines simply cannot replicate.</p>
+                </div>
+
+                <div id="chapter3" class="story-segment">
+                    <h3>Gallery of Masterpieces</h3>
+                    <p>Every piece is designed to be a visual spectacle, embodying elegance and contemporary luxury. Our aesthetics are inspired by minimalist design and the rose-gold hues of the patisserie world, translating into clean lines and subtle, dazzling finishes.</p>
+                    <p>The mastery is evident in the flawless mirror glaze of our entremets, the razor-thin crackle of a choux pastry, and the perfectly set ganache. Below, a glimpse into our world of edible art.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" style="padding-top: 0;">
+        <div class="container">
+            <div class="image-gallery">
+                <div class="gallery-item"><img src="1.jpg" alt="Gallery Image 1"></div>
+                <div class="gallery-item"><img src="2.jpg" alt="Gallery Image 2"></div>
+                <div class="gallery-item"><img src="3.jpg" alt="Gallery Image 3"></div>
+                <div class="gallery-item"><img src="4.jpg" alt="Gallery Image 4"></div>
+                <div class="gallery-item"><img src="5.jpg" alt="Gallery Image 5"></div>
+                <div class="gallery-item"><img src="6.jpg" alt="Gallery Image 6"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="commitment">
+        <div class="container">
+            <div id="chapter4" style="padding-top: 1px;"></div>
+            <h2>Our Ethical Commitment: Luxury with Conscience</h2>
+            <p style="font-size: 18px; max-width: 800px; margin: 0 auto 50px;">True luxury extends beyond taste; it includes the provenance and integrity of our ingredients. We are dedicated to maintaining the highest ethical and quality standards.</p>
+            
+            <div class="commitment-points">
+                <div class="commitment-point">
+                    <i class="fas fa-seedling"></i>
+                    <h4>Sustainable Sourcing</h4>
+                    <p>Prioritizing sustainable farming practices for all regional and imported ingredients, supporting biodiversity and environmental health.</p>
+                </div>
+                <div class="commitment-point">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Fair Trade Partnership</h4>
+                    <p>Ensuring ethical purchasing of coffee, chocolate, and vanilla from producers who receive fair compensation for their specialized work.</p>
+                </div>
+                <div class="commitment-point">
+                    <i class="fas fa-award"></i>
+                    <h4>Zero Waste Goal</h4>
+                    <p>Minimizing our environmental footprint by striving for a near-zero waste production model and composting all organic materials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="cta" style="background: var(--rose-gold); text-align: center; padding: 60px 0;">
+        <div class="container">
+            <h3 style="font-size: 36px; color: var(--chocolate-brown); margin-bottom: 25px;">Ready to Taste the Extraordinary?</h3>
+            <a href="index.html" class="btn-cta" style="background: var(--chocolate-brown); color: white; border-radius: 5px; padding: 15px 40px; text-transform: uppercase;">View the Luxury Collection <i class="fas fa-chevron-right"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="margin: 0;">&copy; 2025 Cloud 9 Pastries. Crafted with luxury and responsibility.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+        
+        if (hamburger) {
+            hamburger.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+                hamburger.innerHTML = navLinks.classList.contains("active")
+                    ? '<i class="fas fa-times"></i>'
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+        
+        // Cart count display (Reads from LocalStorage)
+        const cartCountElement = document.querySelector('.cart-count');
+        
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+        }
+        
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+
+        // Sticky Nav Interactivity (Highlighting links on scroll)
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.story-segment');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Function to update the active link
+            const updateNav = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 200; // Offset for header height
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.href.includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            // Event listeners
+            window.addEventListener('scroll', updateNav);
+            
+            // Initialize on load
+            updateNav();
+
+            // Smooth scrolling for sticky links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 120, // Adjust for fixed header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

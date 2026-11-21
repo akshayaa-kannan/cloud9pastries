@@ -1,0 +1,21 @@
+{
+    "name": "Cloud 9 Pastries",
+    "short_name": "Cloud9",
+    "description": "Luxury boutique patisserie for exquisite cookies and pastries.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#f7f3e9",
+    "theme_color": "#5c3e2d",
+    "icons": [
+        {
+            "src": "LOGO1.jpg",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "LOGO1.jpg",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

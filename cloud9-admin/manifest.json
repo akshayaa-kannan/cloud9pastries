@@ -1,0 +1,21 @@
+{
+"name": "Cloud 9 Admin Dashboard",
+"short_name": "C9 Admin",
+"description": "Real-time order management dashboard for Cloud 9 Pastries.",
+"start_url": "./index.html",
+"display": "standalone",
+"background_color": "#f7f3e9",
+"theme_color": "#5c3e2d",
+"icons": [
+{
+"src": "LOGO1.jpg",
+"sizes": "192x192",
+"type": "image/png"
+},
+{
+"src": "LOGO1.jpg",
+"sizes": "512x512",
+"type": "image/png"
+}
+]
+}
